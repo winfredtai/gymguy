@@ -16,15 +16,33 @@ db = SQLAlchemy(app)
 class Transcation(db.Model):
     # These are the attributes required
     # the primary key in the table
-    digitID = db.Column(db.Integer, primary_key=True)  
+    digitID = db.Column(db.Integer, primary_key=True, unique=True)  
     # username of the account
     userName = db.Column(db.String(80), unique=True, nullable=False)  
     # shipping address of the user
-    shipAddress = db.Column(db.String(64), unique=True, nullable=False)
-    # The account balance of the user
-    accountBalance = db.Column(db.Integer, unique=True)  
+    shipAddress = db.Column(db.String(64), nullable=False)
+    # products in shopping cart  
+    shoppingCart = db.Column(db.String(500), nullable=True)
+    # shipping period of the products 
+    # there is 4 period, use 1 to 4 represent period
+    shipPeriod = db.Column(db.Integer, nullable=False)
+    # gift cards, coupons
+    giftCard = db.Column(db.String(64), nullable=True)
+    # subtotal of staffs in shopping cart
+    subtotal = db.Column(db.Float, nullable=False)
+    #tax of all products in shopping cart
+    tax = db.Column(db.Float, nullable=False)
+    #shipping fee of the package
+    shipFee = db.Column(db.Float, nullable=False)
     # total cost of all products
-    totalBill = db.Column(db.Integer, unique=True)  
+    billAmount = db.Column(db.Float, nullable=False)  
+    # ship status of the package
+    shipStatus = db.Column(db.String(64), nullable=False)
+    # track number of the package
+    trackNum = db.Column(db.String(64), nullable=False)
+    # name of shipping company
+    courierName = db.Column(db.String(80), nullable=False)
+
 
 
     def __repr__(self):
