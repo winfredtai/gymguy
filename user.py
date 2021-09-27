@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-
 # import SQL packages
 
 # Create a Flask application object and set the URI for
