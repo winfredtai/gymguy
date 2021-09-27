@@ -20,7 +20,8 @@ class Review(db.Model):
     # First attribute of review model is going to be user name and set
     # it with true primary key.
     # Since user name can be used to identify different reviews.
-    username = db.Column(db.String(80), primary_key=True, unique=True, nullable=False)
+    username = db.Column(db.String(80), primary_key=True,
+                         unique=True, nullable=False)
     # Second attribute of review model is going to be feed back rating.
     # It's a float number with 2 decimal places, users rate their
     # experience in float number range(0,10)
@@ -32,13 +33,16 @@ class Review(db.Model):
     # Fourth attribute of review model is going to be seller name.
     # It's settled with true primary key since it can also identifies
     # the review different reviews.
-    seller_name = db.Column(db.String(120), primary_key=True, unique=True, nullable=False)
+    seller_name = db.Column(db.String(120), primary_key=True,
+                            unique=True, nullable=False)
     # Fifth attribute of review model is going to be comment content.
     # It could be sentence or paragraphs.
     comment = db.Column(db.String(500), unique=True, nullable=False)
-    # Sixth attribute of review model is going to be the date user leaving review.
-    # It require the data time from the imported datatime package.
-    comment_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    # Sixth attribute of review model is going to be the date user
+    # leaving review.It require the data time from the imported
+    # datatime package.
+    comment_date = db.Column(db.DateTime, nullable=False,
+                             default=datetime.utcnow)
 
     def __repr__(self):
         return '<User %r>' % self.username
