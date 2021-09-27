@@ -11,6 +11,9 @@ app = Flask(__name__)
 # Configure the database URI that should be used for the connection
 # to sqlite:///db.sqlite
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+# This default will cause warning report.
+# Set to false to stop warning report.
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Connect flask to a database.
 db = SQLAlchemy(app)
 
