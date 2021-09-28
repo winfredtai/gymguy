@@ -15,9 +15,9 @@ Student Number: 20103850
 
 #### Team Member #2:
 
-Name:
+Name: Ziyuan Yu
 
-Student Number:
+Student Number: 20033788
 
 
 #### Team Member #3:
