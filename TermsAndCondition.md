@@ -15,18 +15,14 @@ Student Number: 20103850
 
 #### Team Member #2:
 
-Name: Ziyuan Yu
+Name: Jordan Belinsky
 
-Student Number: 20033788
+Student Number: 20164936
 
 
 #### Team Member #3:
 
-<<<<<<< Updated upstream
-Name:Ziyuan Yu  
-=======
 Name: Ziyuan Yu 
->>>>>>> Stashed changes
 
 Student Number: 20033788
 
