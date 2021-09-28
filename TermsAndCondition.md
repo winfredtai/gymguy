@@ -22,7 +22,11 @@ Student Number: 20033788
 
 #### Team Member #3:
 
+<<<<<<< Updated upstream
 Name:Ziyuan Yu  
+=======
+Name: Ziyuan Yu 
+>>>>>>> Stashed changes
 
 Student Number: 20033788
 
