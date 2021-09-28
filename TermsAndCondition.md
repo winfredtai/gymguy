@@ -28,7 +28,7 @@ Student Number: 20033788
 
 
 #### Team Member #4:
-Name:
+Name: Sizhe Guan
 
-Student Number:
+Student Number: 20090459
 
