@@ -15,9 +15,9 @@ Student Number: 20103850
 
 #### Team Member #2:
 
-Name:
+Name: Jordan Belinsky
 
-Student Number:
+Student Number: 20164936
 
 
 #### Team Member #3:
