@@ -1,14 +1,11 @@
 from qbay import app
 from flask_sqlalchemy import SQLAlchemy
 
-
 '''
 This file defines data models and related business logics
 '''
 
-
 db = SQLAlchemy(app)
-
 
 
 class User(db.Model):
@@ -44,9 +41,9 @@ class Product(db.Model):
         db.String(2000), nullable=False)
     price = db.Column(
         db.Float(), nullable=False)
-    last_modified_date=db.Column(
+    last_modified_date = db.Column(
         db.String(20), nullable=False)
-    owner_email=db.Column(
+    owner_email = db.Column(
         db.String(120), unique=True, nullable=False)
 
     def __repr__(self):
@@ -74,7 +71,7 @@ class Transcation(db.Model):
     # set id to primary_key and Integer and it would
     # increment automatically
     transaction_id = db.Column(
-        db.Integer(),unique=True, nullable=False,
+        db.Integer(), unique=True, nullable=False,
         primary_key=True)
     user_email = db.Column(
         db.String(120), nullable=False)
@@ -91,7 +88,6 @@ class Transcation(db.Model):
 
 # create all tables
 db.create_all()
-
 
 
 def register(name, email, password):
