@@ -1,6 +1,7 @@
 from qbay.models import register, login, update_user
+from qbay_test.conftest import pytest_sessionstart
 
-
+pytest_sessionstart()
 def test_r1_1_user_register():
     '''
     Testing R1-1: If the email or password (or both) is empty, the operation
