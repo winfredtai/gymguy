@@ -354,7 +354,6 @@ def test_r4_8_create_product():
                           42.00, 'test8@test.com') is True
 
 
-
 def test_r5_1_update_product():
     '''
     Testing R5-1: update attributes of products
@@ -373,9 +372,9 @@ def test_r5_1_update_product():
                           newPrice=20.0, newTitle="Wooden Toy Brand new"
                           ) is True
 
-    assert update_product(old_title="Wooden Toy Brand new", newDescription=description2,
-                          newPrice=25.0, newTitle="Wooden Toy Brand new1"
-                          ) is True
+    assert update_product(old_title="Wooden Toy Brand new",
+                          newDescription=description2, newPrice=25.0,
+                          newTitle="Wooden Toy Brand new1") is True
 
     assert update_product(old_title="Wooden Toy Brand new1", newPrice=30.0,
                           newTitle="Wooden Toy Brand new2") is True
@@ -414,7 +413,8 @@ def test_r5_4_update_product():
                           newTitle=title1, newPrice=45.0) is True
     # price must less than 10000
     assert update_product(old_title=title_existed, newDescription=description1,
-                          newTitle="Live edge Table1", newPrice=20000.0) is False
+                          newTitle="Live edge Table1", newPrice=20000.0
+                          ) is False
     # no space at left or right
     assert update_product(old_title=title_existed, newTitle=" Live edge Table1"
                           ) is False
