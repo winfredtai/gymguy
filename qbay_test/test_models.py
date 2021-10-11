@@ -13,6 +13,14 @@ def test_r1_1_user_register():
     assert register('user1', 'test1@test.com', '123456aA.') is True
 
 
+def test_r1_2_user_register():
+    '''
+     Testing R1-1: If the email is the primary key, the operation
+     success. (Specified in User())
+     '''
+    assert register('userp1', 'testp1@test.com', '123456aA.') is True
+
+
 def test_r1_3_user_register():
     '''
     Testing R1-3: If the email does not follow RFC5322, the operation
