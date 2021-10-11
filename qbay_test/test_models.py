@@ -1,4 +1,4 @@
-from qbay.models import register, login, update_user
+from qbay.models import register, login, update_user, updateProductTittle, updateProductDescription, updateProductPrice
 from qbay_test.conftest import pytest_sessionstart
 
 pytest_sessionstart()
@@ -355,3 +355,28 @@ def test_r4_8_create_product():
     assert create_product('Handprint Keychain and or Footprint', testStr,
                           42.00, '2023-12-15', 'test0@test.com') is True
 
+
+def test_r5_1_productUpdate():
+    '''
+    Testing R3-1: update attributes of products
+      and update modified time automatically
+    (will use the created product in the previous test.)
+    '''
+
+    assert updateProductTittle(ID = 1, newTittle = "product") is True
+    assert updateProductDescription(ID = 1, newDescription = "product") is True
+    assert updateProductPrice(ID = 1, newPrice = 13) is True
+
+
+def test_r5_2_productUpdate():
+    '''
+    Testing R3-2: ID, tittle, description cannot be empty
+    (will use the created product in the previous test.)
+    '''
+
+    assert updateProductTittle(ID = None, newTittle = "product") is False
+    assert updateProductDescription(ID = None, newDescription = "") is False
+    assert updateProductPrice(ID = None, newPrice = 13) is False
+    assert updateProductTittle(ID = 1, newTittle = "") is False
+    assert updateProductDescription(ID = 1, newDescription = "") is False
+    assert updateProductPrice(ID = 1, newPrice = None) is False
