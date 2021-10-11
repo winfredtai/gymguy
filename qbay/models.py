@@ -412,11 +412,13 @@ def updateProductDescription(ID, newDescription):
 
         # update product description to the current database session
         db.session.query(Product).filter(Product.product_id==ID).\
-            update({Product.description: newDescription}, synchronize_session = False)
+            update({Product.description: newDescription},\
+                synchronize_session=False)
         
         # update product update time to the current database session
         db.session.query(Product).filter(Product.product_id==ID).\
-            update({Product.last_modified_date: datetime.now()}, synchronize_session = False)
+            update({Product.last_modified_date: datetime.now()},\
+                synchronize_session=False)
         
         # save the product object
         db.session.commit()
@@ -441,11 +443,13 @@ def updateProductPrice(ID, newPrice):
 
         # update product description to the current database session
         db.session.query(Product).filter(Product.product_id==ID).\
-            update({Product.price: newPrice}, synchronize_session = False)
+            update({Product.price: newPrice},\
+                synchronize_session = False)
         
         # update product update time to the current database session
         db.session.query(Product).filter(Product.product_id==ID).\
-            update({Product.last_modified_date: datetime.now()}, synchronize_session = False)
+            update({Product.last_modified_date: datetime.now()},\
+                synchronize_session=False)
         
         # save the product object
         db.session.commit()
