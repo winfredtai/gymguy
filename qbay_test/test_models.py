@@ -201,3 +201,157 @@ def test_r3_4_update_user():
     assert update_user(email="testuser4@gmail.com", username=" ",
                        shipping_address="33 Evergreen Terrace",
                        postal_code="L55 2B88") is False
+
+
+def test_r4_12_create_product():
+    '''
+    Testing R4-1: The title of the product has to be alphanumeric-only,
+    and space allowed only if it is not as prefix and suffix.
+    Testing R4-2: The title of the product is no longer than 80 characters.
+    '''
+    assert create_product(' wooden toys ',
+                          "These wooden peg people sets are perfect "
+                          "for promoting "
+                          "open ended play. Your child will "
+                          "love exploring and using them in many "
+                          "different ways. Also "
+                          "an excellent resource for early "
+                          "colour recognition, counting and sorting.",
+                          15.00, '2021-10-15', 'test0@test.com') is False
+    assert create_product('wooden toys!!',
+                          "These wooden peg people sets are perfect "
+                          "for promoting open "
+                          "ended play. Your child will "
+                          "love exploring and using them in many "
+                          "different ways. Also an "
+                          "excellent resource for early "
+                          "colour recognition, counting and sorting.",
+                          15.00, '2021-10-15', 'test0@test.com') is False
+    assert create_product('sdfghjklwertyuioasdfghjklwertyuiosdfghjksdfgh'
+                          'kledfgthjklertyu'
+                          'iosdfghyjukldfghjksdfgh',
+                          "These wooden peg people sets are perfect for "
+                          "promoting open en"
+                          "ded play. Your child will "
+                          "love exploring and using them in many "
+                          "different ways. Also an "
+                          "excellent resource for early "
+                          "colour recognition, counting and sorting.",
+                          15.00, '2021-10-15', 'test0@test.com') is False
+    assert create_product('Wooden Toy and Montessori and Waldorf',
+                          "These wooden peg people sets are perfect for "
+                          "promoting open end"
+                          "ed play. Your child will "
+                          "love exploring and using them in many different "
+                          "ways. Also an "
+                          "excellent resource for early "
+                          "colour recognition, counting and sorting.",
+                          15.00, '2021-10-15', 'test0@test.com') is True
+
+
+def test_r4_34_create_product():
+    '''
+    Testing R4-3: The description of the product can be arbitrary
+    characters,
+    with a minimum length of 20 characters and a maximum of 2000
+    characters.
+    Testing R4-4: Description has to be longer than the product's title.
+    '''
+
+    test_string = "Halloween-themed wooden Spooky Tree and bats playset " \
+                  "for small world " \
+                  "play and seasonal decor. " \
+                  "Handmade from Maple Hardwood, Each piece is cut by " \
+                  "hand, sanded smooth" \
+                  ", painted, and sealed for " \
+                  "durability with non-toxic acrylics, stains, and sealer. "
+    temp = ''
+    for i in range(11):
+        temp += test_string
+    assert create_product('Spooky Bats',
+                          "These wooden peg",
+                          32.71, '2022-10-15', 'test0@test.com') is False
+    assert create_product('Spooky Bats in a Tree', temp,
+                          32.71, '2022-10-15', 'test0@test.com') is False
+    assert create_product('Spooky Bats in a Tree perfect for promoting',
+                          "These wooden peg people sets aru.",
+                          32.71, '2022-10-15', 'test0@test.com') is False
+    assert create_product('Spooky Bats in a Tree', test_string,
+                          32.71, '2022-10-15', 'test0@test.com') is True
+
+
+def test_r4_5_create_product():
+    '''
+    Testing R4-5: Price has to be of range [10, 10000].
+    '''
+    testStr = "The Austin vanity is proudly made in Canada. Every " \
+              "Austin vanity is " \
+              "handmade to order and has a lead " \
+              "time of approximately 14 days. "
+
+    assert create_product('Live Edge Table Live edge Vanity Live Edge',
+                          testStr,
+                          9.71, '2022-11-15', 'test0@test.com') is False
+    assert create_product('Live Edge Table Live edge Vanity Live Edge',
+                          testStr,
+                          11111.71, '2022-11-15', 'test0@test.com') is False
+    assert create_product('Live Edge Table Live edge Vanity Live Edge',
+                          testStr,
+                          32.71, '2022-11-15', 'test0@test.com') is True
+
+
+def test_r4_6_create_product():
+    '''
+    Testing R4-6: last_modified_date must be after 2021-01-02 and
+    before 2025-01-02.
+    '''
+    testStr = "SASKIA burgundy leather purse - designed in " \
+              "collaboration with DJ, " \
+              "activist and fashion icon Honey " \
+              "Dijon as part of the exclusive Etsy Creator Collab. "
+
+    assert create_product('Honey Dijon Creator Collab', testStr,
+                          110.75, '2021-01-01', 'test0@test.com') is False
+    assert create_product('Honey Dijon Creator Collab', testStr,
+                          110.75, '2025-02-02', 'test0@test.com') is False
+    assert create_product('Honey Dijon Creator Collab', testStr,
+                          110.75, '2022-12-15', 'test0@test.com') is True
+
+
+def test_r4_7_create_product():
+    '''
+    Testing R4-7: owner_email cannot be empty. The owner of
+    the corresponding
+    product must exist in the database.
+    '''
+    testStr = "Our 6oz stainless steel flask is handwrapped " \
+              "using the highest " \
+              "quality, North American sourced " \
+              "leather. Each leather wrap is hand stitched using " \
+              "a premium waxed " \
+              "thread in a variety of color options. "
+
+    assert create_product('PERSONALIZED leather hip flask', testStr,
+                          42.00, '2023-12-15', '') is False
+    assert create_product('PERSONALIZED leather hip flask', testStr,
+                          42.00, '2023-12-15', 'abcdef.def@mail.com') is False
+    assert create_product('PERSONALIZED leather hip flask', testStr,
+                          42.00, '2023-12-15', 'test0@test.com') is True
+
+
+def test_r4_8_create_product():
+    '''
+    Testing R4-8: A user cannot create products that have the same title.
+    '''
+    testStr = "Our 6oz stainless steel flask is handwrapped " \
+              "using the highest " \
+              "quality, North American sourced " \
+              "leather. Each leather wrap is hand stitched " \
+              "using a premium waxed " \
+              "thread in a variety of color options. "
+
+    assert create_product('PERSONALIZED leather hip flask', testStr,
+                          42.00, '2023-12-15', '') is False
+    assert create_product('Handprint Keychain and or Footprint', testStr,
+                          42.00, '2023-12-15', 'test0@test.com') is True
+

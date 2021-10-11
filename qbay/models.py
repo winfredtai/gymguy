@@ -293,3 +293,79 @@ def update_user(email, username, shipping_address, postal_code):
         return True
     else:
         return False
+
+
+def create_product(Title, Description, Price, Last_modified_date, Owner_email):
+    """
+    Create a new product
+        Parameters:
+            Title (string):          product name
+            Owner_email (string):    product owner email
+            Description (string):    product description
+            Price (float):           product price
+            Last_modified_date (string): date of last modification of product
+        Returns:
+            true if registration succeeded otherwise False
+    """
+
+    # R4-1:The title of the product has to be alphanumeric-only,
+    # and space allowed only if it is not as prefix and suffix.
+    if Title[0] == ' ' or Title[-1] == ' ':
+        return False
+    else:
+        tempTitle = Title.replace(" ", "")
+        if not tempTitle.isalnum():
+            return False
+        # R4-2: The title of the product is no longer than 80 characters.
+        elif len(Title) > 80:
+            return False
+    # R4-8: A user cannot create products that have the same title.
+    validT = Product.query.filter_by(title=Title).all()
+    if len(validT) != 1:
+        return False
+
+    # R4-4: Description has to be longer than the product's title.
+    if len(Description) < len(Title):
+        return False
+    else:
+        # R4-3: The description of the product can be arbitrary characters,
+        # with a minimum length of 20 characters and a maximum of
+        # 2000 characters.
+        if len(Description) > 2000 or len(Description) < 20:
+            return False
+
+    # R4-5: Price has to be of range [10, 10000].
+    if Price > 10000 or Price < 10:
+        return False
+
+    # R4-6: last_modified_date must be after 2021-01-02 and before 2025-01-02.
+    while True:
+        # Convert string time to the datetime type variable
+        date_time_obj = datetime.strptime(Last_modified_date,
+                                          '%Y-%m-%d').date()
+        start = datetime.datetime.strptime("2021-01-02", '%Y-%m-%d')
+        end = datetime.datetime.strptime("2025-01-02", '%Y-%m-%d')
+        if Last_modified_date == '2022-02-29':
+            break
+        elif Last_modified_date == '2021-02-29' or \
+                Last_modified_date == '2023-02-29' \
+                or Last_modified_date == '2024-02-29':
+            return False
+        elif not (start <= date_time_obj <= end):
+            return False
+
+    # R4-7: owner_email cannot be empty(designed in model declaration).
+    # The owner of the corresponding product must exist in the database.
+    validO = Product.query.filter_by(owner_email=Owner_email).all()
+    if len(validO) == 0:
+        return False
+
+    # create a new user
+    product = Product(title=Title, description=Description,
+                      price=Price, last_modified_date=Last_modified_date,
+                      owner_email=Owner_email)
+    # add it to the current database session
+    db.session.add(product)
+    # actually save the user object
+    db.session.commit()
+    return True
