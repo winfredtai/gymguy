@@ -49,7 +49,7 @@ class Product(db.Model):
     price = db.Column(
         db.Float(), nullable=False)
     last_modified_date = db.Column(
-        db.DataTime(), nullable=False)
+        db.DateTime, nullable=False)
     owner_email = db.Column(
         db.String(120), unique=True, nullable=False)
 
@@ -339,11 +339,10 @@ def create_product(Title, Description, Price, Last_modified_date, Owner_email):
     if Price > 10000 or Price < 10:
         return False
 
-    # R4-6: last_modified_date must be after 2021-01-02 and before 2025-01-02.
+    # R4-6: last_modified_date must be after 2021-01-02 and
+    # before 2025-01-02.
     while True:
         # Convert string time to the datetime type variable
-        date_time_obj = datetime.strptime(Last_modified_date,
-                                          '%Y-%m-%d').date()
         start = datetime.datetime.strptime("2021-01-02", '%Y-%m-%d')
         end = datetime.datetime.strptime("2025-01-02", '%Y-%m-%d')
         if Last_modified_date == '2022-02-29':
