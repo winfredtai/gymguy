@@ -1,14 +1,102 @@
 from qbay.models import register, login, update_user
 
 
+def test_r1_1_user_register():
+    '''
+    Testing R1-1: If the email or password (or both) is empty, the operation
+    failed.
+    '''
+
+    assert register('user1', 'test0@test.com', '') is False
+    assert register('user1', '', '123456aA.') is False
+    assert register('user1', '', '') is False
+    assert register('user1', 'test1@test.com', '123456aA.') is True
+
+
+def test_r1_3_user_register():
+    '''
+    Testing R1-3: If the email does not follow RFC5322, the operation
+    failed.
+    '''
+    assert register('user2', 'test2@test.com', '123456aA.') is True
+    assert register('user1', 'aaa@w2@', '123456aA.') is False
+
+
+def test_r1_4_user_register():
+    '''
+    Testing R1-4: If the password does not meet the complexity, the operation
+    failed. (minimum length 6, at least one upper case, at least one lower
+    case, and at least one special character.)
+    '''
+    assert register('user3', 'test3@test.com', '123456aA.') is True
+    assert register('user1', 'test0@test.com', '1234') is False
+    assert register('user1', 'test0@test.com', '12aA.') is False
+    assert register('user1', 'test0@test.com', '123456') is False
+    assert register('user1', 'test0@test.com', '123456a.') is False
+    assert register('user1', 'test0@test.com', '123456A.') is False
+    assert register('user1', 'test0@test.com', '12346aa.') is False
+    assert register('user1', 'test0@test.com', '12346AA.') is False
+    assert register('user1', 'test0@test.com', '12346aA') is False
+
+
+def test_r1_5_user_register():
+    '''
+    Testing R1-5: If the username does not meet the requirement, the operation
+    failed. (User name has to be non-empty, alphanumeric-only, and space
+    allowed only if it is not as the prefix or suffix.)
+    '''
+    assert register('user4', 'test4@test.com', '123456aA.') is True
+    assert register('', 'test0@test.com', '123456aA.') is False
+    assert register('user1.', 'test0@test.com', '123456aA.') is False
+    assert register('user1 ', 'test0@test.com', '123456aA.') is False
+    assert register(' user1', 'test0@test.com', '123456aA.') is False
+    assert register('use r1', 'test11@test.com', '123456aA.') is True
+
+
+def test_r1_6_user_register():
+    '''
+    Testing R1-6: If the username does not meet the requirement, the operation
+    failed. (User name has to be longer than 2 characters and less than 20
+    characters.)
+    '''
+    assert register('user5', 'test5@test.com', '123456aA.') is True
+    assert register('us', 'test0@test.com', '123456aA.') is False
+    assert register('aaaaabbbbbcccccddddd', 'test0@test.com',
+                    '123456aA.') is False
+
+
 def test_r1_7_user_register():
     '''
     Testing R1-7: If the email has been used, the operation failed.
     '''
 
-    assert register('u0', 'test0@test.com', '123456') is True
-    assert register('u0', 'test1@test.com', '123456') is True
-    assert register('u1', 'test0@test.com', '123456') is False
+    assert register('user6', 'test6@test.com', '123456aA.') is True
+    assert register('user7', 'test7@test.com', '123456aA.') is True
+    assert register('user009', 'test7@test.com', '123456') is False
+
+
+def test_r1_8_user_register():
+    '''
+    Testing R1-8: If Shipping address is empty at the time of registration,
+    the operation success.
+    '''
+    assert register('user8', 'tes8@test.com', '123456aA.') is True
+
+
+def test_r1_9_user_register():
+    '''
+    Testing R1-8: If Postal code is empty at the time of registration,
+    the operation success.
+    '''
+    assert register('user9', 'test9@test.com', '123456aA.') is True
+
+
+def test_r1_10_user_register():
+    '''
+    Testing R1-8: If  Balance should be initialized as 100 at the time of
+    registration, the operation success.
+    '''
+    assert register('user10', 'test10@test.com', '123456aA.') is True
 
 
 def test_r2_1_login():
