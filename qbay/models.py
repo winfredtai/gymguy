@@ -49,7 +49,7 @@ class Product(db.Model):
     price = db.Column(
         db.Float(), nullable=False)
     last_modified_date = db.Column(
-        db.DataTime, nullable=False)
+        db.DateTime, nullable=False)
     owner_email = db.Column(
         db.String(120), unique=True, nullable=False)
 
