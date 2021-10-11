@@ -1,6 +1,7 @@
 import re
 from qbay import app
 from flask_sqlalchemy import SQLAlchemy
+import datetime
 
 '''
 This file defines data models and related business logics
@@ -48,7 +49,7 @@ class Product(db.Model):
     price = db.Column(
         db.Float(), nullable=False)
     last_modified_date = db.Column(
-        db.String(20), nullable=False)
+        db.DataTime, nullable=False)
     owner_email = db.Column(
         db.String(120), unique=True, nullable=False)
 
@@ -291,5 +292,86 @@ def update_user(email, username, shipping_address, postal_code):
         user.postal_code = postal_code
         db.session.commit()
         return True
+    else:
+        return False
+
+
+def updateProductTittle(ID, newTittle):
+    '''
+    Update product tittle
+        Paraameters:
+            ID(integer):     product ID
+            tittle(String):  new product tittle
+    '''
+    # check if the tittle is not empty
+    if (newTittle is not None) & (ID is not None):
+
+        # update product tittle to the current database session
+        db.session.query(Product).filter(Product.product_id == ID).\
+            update({Product.tittle: newTittle}, synchronize_session = False)
+        
+        # update product update time to the current database session
+        db.session.query(Product).filter(Product.product_id == ID).\
+            update({Product.last_modified_date: datetime.now}, synchronize_session = False)
+        
+        # save the product object
+        db.session.commit()
+        return True
+        
+    else:
+        return False
+
+         
+def updateProductDescription(ID, newDescription):
+    '''
+    Update product tittle
+        Paraameters:
+            ID(integer):     product ID
+            newDescription(String):  new product description
+    '''
+    # check if the newDescription is not empty
+    if (newDescription is not None) & (ID is not None):
+
+        # update product description to the current database session
+        db.session.query(Product).filter(Product.product_id == ID).\
+            update({Product.description: newDescription}, synchronize_session = False)
+        
+        # update product update time to the current database session
+        db.session.query(Product).filter(Product.product_id == ID).\
+            update({Product.last_modified_date: datetime.now()}, synchronize_session = False)
+        
+        # save the product object
+        db.session.commit()
+        return True
+        
+    else:
+        return False
+
+
+def updateProductPrice(ID, newPrice):
+    '''
+    Update product tittle
+        Paraameters:
+            ID(integer):     product ID
+            newPrice(Float):  new product price
+    '''
+    # get old price
+    oldPrice = db.session.query(Product).filter(Product.price).one()
+    
+    # check whether new price is increase
+    if (newPrice > oldPrice) & (ID is not None):
+
+        # update product description to the current database session
+        db.session.query(Product).filter(Product.product_id == ID).\
+            update({Product.price: newPrice}, synchronize_session = False)
+        
+        # update product update time to the current database session
+        db.session.query(Product).filter(Product.product_id == ID).\
+            update({Product.last_modified_date: datetime.now()}, synchronize_session = False)
+        
+        # save the product object
+        db.session.commit()
+        return True
+        
     else:
         return False
