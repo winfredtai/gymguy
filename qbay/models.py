@@ -339,7 +339,8 @@ def create_product(Title, Description, Price, Last_modified_date, Owner_email):
     if Price > 10000 or Price < 10:
         return False
 
-    # R4-6: last_modified_date must be after 2021-01-02 and before 2025-01-02.
+    # R4-6: last_modified_date must be after 2021-01-02 and
+    # before 2025-01-02.
     while True:
         # Convert string time to the datetime type variable
         date_time_obj = datetime.strptime(Last_modified_date,
