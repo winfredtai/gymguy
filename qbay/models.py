@@ -12,19 +12,24 @@ db = SQLAlchemy(app)
 class User(db.Model):
     username = db.Column(
         db.String(80), nullable=False)
-    # user is uniquely identified by his/her email address
+    # R1-1 email and password cannot be empty
+    # R1-2 user is uniquely identified by his/her email address
     email = db.Column(
         db.String(120), unique=True, nullable=False,
         primary_key=True)
     password = db.Column(
         db.String(120), nullable=False)
+    # R1-8 Shipping address is empty at the time of
+    # registration.
     shipping_address = db.Column(
-        db.String(240), nullable=False)
+        db.String(240), default=None, nullable=True)
     # postal code is usually 7 chars, 6 letter and 1 space
+    # R1-9
     postal_code = db.Column(
-        db.String(12), nullable=False)
+        db.String(12), default=None, nullable=True)
+    # R1-10 balance is initialized as 100
     balance = db.Column(
-        db.Float(), nullable=False)
+        db.Float(), default=100.0, nullable=False)
 
     def __repr__(self):
         return '<User %r>' % self.username
@@ -68,7 +73,7 @@ class Review(db.Model):
         return '<Review %r>' % self.score
 
 
-class Transcation(db.Model):
+class Transaction(db.Model):
     # set id to primary_key and Integer and it would
     # increment automatically
     transaction_id = db.Column(
@@ -150,23 +155,91 @@ def check_postal_code(postal_code):
     return True
 
 
+def check_password(password):
+    '''
+    Checks that password meets requirements
+      Parameters:
+        password(string):   user password
+      Returns:
+        True if password meets requirements otherwise False
+    '''
+    upper = 0
+    lower = 0
+    special = 0
+    if len(password) >= 6:
+        for i in password:
+            if i.isupper():
+                upper += 1
+            if i.islower():
+                lower += 1
+            if i in "~\\!@#$%^&*()_+-*/<>,.[]":
+                special += 1
+        if (upper > 0) and (lower > 0) and (special > 0):
+            return True
+    return False
+
+
+def check_email(email):
+    '''
+    Checks that email meets requirements
+      Parameters:
+        email(string): user email
+      Returns:
+        True if email meets requirements otherwise False
+    '''
+    # regular expression of RFC 5322, have tested the validation locally
+    email_pattern = '''(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?
+    ^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[
+    \x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[
+    a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][
+    0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[
+    \x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[
+    \x01-\x09\x0b\x0c\x0e-\x7f])+)\\])'''
+    pat = re.compile(email_pattern)
+    if re.fullmatch(pat, email):
+        return True
+    else:
+        return False
+
+
 def register(name, email, password):
     '''
     Register a new user
       Parameters:
-        name (string):      user name
-        email (string):     user email
-        password (string):  user password
+        name (string):     user name
+        email (string):    user email
+        password (string): user password
       Returns:
         True if registration succeeded otherwise False
     '''
-    # check if the email has been used:
+    # R1-1
+    if not email or not password:
+        return False
+    # R1-3 email has to follow addr-spec
+    if not check_email(email):
+        return False
+    # R1-4 password has to meet the required complexity
+    if not check_password(password):
+        return False
+    # R1-5 & R1-6 User name specification
+    if not check_username(name):
+        return False
+    # R1-7 check if the email has been used:
     existed = User.query.filter_by(email=email).all()
     if len(existed) > 0:
         return False
-
     # create a new user
     user = User(username=name, email=email, password=password)
+    # R1-2 specified in User()
+    # R1-8
+    if user.shipping_address is not None:
+        return False
+    # R1-9
+    if user.postal_code is not None:
+        return False
+    # R1-10
+    if user.balance != 100.0:
+        return False
     # add it to the current database session
     db.session.add(user)
     # actually save the user object
