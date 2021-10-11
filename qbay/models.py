@@ -174,7 +174,6 @@ def check_password(password):
                 lower += 1
             if i in "~\\!@#$%^&*()_+-*/<>,.[]":
                 special += 1
-        print(upper, lower, special)
         if (upper > 0) and (lower > 0) and (special > 0):
             return True
     return False
