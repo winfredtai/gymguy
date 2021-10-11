@@ -216,5 +216,7 @@ def update_user(email, username, shipping_address, postal_code):
         user.username = username
         user.shipping_address = shipping_address
         user.postal_code = postal_code
-    db.session.commit()
-    return True
+        db.session.commit()
+        return True
+    else:
+        return False
