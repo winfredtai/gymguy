@@ -1,8 +1,5 @@
 from qbay.models import register, login, update_user, \
-    updateProductTittle, updateProductDescription, updateProductPrice
-from qbay_test.conftest import pytest_sessionstart
-
-pytest_sessionstart()
+    update_product, create_product, User, Product
 
 
 def test_r1_1_user_register():
@@ -92,7 +89,7 @@ def test_r1_8_user_register():
     Testing R1-8: If Shipping address is empty at the time of registration,
     the operation success.
     '''
-    assert register('user8', 'tes8@test.com', '123456aA.') is True
+    assert register('user8', 'test8@test.com', '123456aA.') is True
 
 
 def test_r1_9_user_register():
@@ -119,11 +116,13 @@ def test_r2_1_login():
       u1 in database)
     '''
 
-    user = login('test0@test.com', 123456)
-    assert user is not None
-    assert user.username == 'u0'
 
-    user = login('test0@test.com', 1234567)
+    user = login('test10@test.com', '123456aA.')
+    assert user is not None
+    assert user.username == 'user10'
+
+    # this account does not exist
+    user = login('1222aa@test.com', '1234567aA.')
     assert user is None
 
 
@@ -145,9 +144,12 @@ def test_r3_1_update_user():
     shipping address and postal code.
     '''
 
-    assert update_user(email="testuser1@gmail.com", username="testuser1",
+    assert update_user(email="test10@test.com", username="user10",
                        shipping_address="33 Evergreen Terrace",
                        postal_code="L5C 2B5") is True
+    assert update_user(email="test8@test.com", username="user8",
+                       shipping_address="33 Queens Cres",
+                       postal_code="K7L 2H9") is True
     assert update_user(email="email", username=" ",
                        shipping_address="33 Evergreen Terrace!",
                        postal_code="83053") is False
@@ -159,13 +161,13 @@ def test_r3_2_update_user():
     non empty, alphanumeric, and not contain symbols.
     '''
 
-    assert update_user(email="testuser2@gmail.com", username="testuser2",
+    assert update_user(email="test8@test.com", username="user8",
                        shipping_address="33 Evergreen Terrace",
                        postal_code="L5C 2B5") is True
-    assert update_user(email="testuser2@gmail.com", username="testuser2",
+    assert update_user(email="test8@test.com", username="user8",
                        shipping_address=" ",
                        postal_code="L5C 2B5") is False
-    assert update_user(email="testuser2@gmail.com", username="testuser2",
+    assert update_user(email="test8@test.com", username="user8",
                        shipping_address="33 Evergr33n Terrace!",
                        postal_code="L5C 2B5") is False
 
@@ -176,10 +178,10 @@ def test_r3_3_update_user():
     Canadian Postal code.
     '''
 
-    assert update_user(email="testuser3@gmail.com", username="testuser3",
+    assert update_user(email="test8@test.com", username="user8",
                        shipping_address="33 Evergreen Terrace",
                        postal_code="L5C 2B5") is True
-    assert update_user(email="testuser3@gmail.com", username="testuser3",
+    assert update_user(email="test8@test.com", username="user8",
                        shipping_address="33 Evergreen Terrace",
                        postal_code="L55 2B88") is False
 
@@ -190,26 +192,25 @@ def test_r3_4_update_user():
     requirements.
     '''
 
-    assert update_user(email="testuser4@gmail.com", username="testuser4",
+    assert update_user(email="test8@test.com", username="user8",
                        shipping_address="33 Evergreen Terrace",
                        postal_code="L5C 2B5") is True
-    assert update_user(email="testuser4@gmail.com", username=" testuser4 ",
+    assert update_user(email="test8@test.com", username=" testuser4 ",
                        shipping_address="33 Evergreen Terrace",
                        postal_code="L55 2B88") is False
-    assert update_user(email="testuser4@gmail.com", username="t4",
+    assert update_user(email="test8@test.com", username="t4",
                        shipping_address="33 Evergreen Terrace",
                        postal_code="L55 2B88") is False
-    assert update_user(email="testuser4@gmail.com", username=" ",
+    assert update_user(email="test8@test.com", username=" ",
                        shipping_address="33 Evergreen Terrace",
                        postal_code="L55 2B88") is False
-
 
 def test_r4_12_create_product():
-    '''
+    """
     Testing R4-1: The title of the product has to be alphanumeric-only,
     and space allowed only if it is not as prefix and suffix.
     Testing R4-2: The title of the product is no longer than 80 characters.
-    '''
+    """
     assert create_product(' wooden toys ',
                           "These wooden peg people sets are perfect "
                           "for promoting "
@@ -218,7 +219,7 @@ def test_r4_12_create_product():
                           "different ways. Also "
                           "an excellent resource for early "
                           "colour recognition, counting and sorting.",
-                          15.00, '2021-10-15', 'test0@test.com') is False
+                          15.00, 'test8@test.com') is False
     assert create_product('wooden toys!!',
                           "These wooden peg people sets are perfect "
                           "for promoting open "
@@ -227,7 +228,7 @@ def test_r4_12_create_product():
                           "different ways. Also an "
                           "excellent resource for early "
                           "colour recognition, counting and sorting.",
-                          15.00, '2021-10-15', 'test0@test.com') is False
+                          15.00, 'test8@test.com') is False
     assert create_product('sdfghjklwertyuioasdfghjklwertyuiosdfghjksdfgh'
                           'kledfgthjklertyu'
                           'iosdfghyjukldfghjksdfgh',
@@ -238,7 +239,7 @@ def test_r4_12_create_product():
                           "different ways. Also an "
                           "excellent resource for early "
                           "colour recognition, counting and sorting.",
-                          15.00, '2021-10-15', 'test0@test.com') is False
+                          15.00, 'test8@test.com') is False
     assert create_product('Wooden Toy and Montessori and Waldorf',
                           "These wooden peg people sets are perfect for "
                           "promoting open end"
@@ -247,7 +248,7 @@ def test_r4_12_create_product():
                           "ways. Also an "
                           "excellent resource for early "
                           "colour recognition, counting and sorting.",
-                          15.00, '2021-10-15', 'test0@test.com') is True
+                          15.00, 'test8@test.com') is True
 
 
 def test_r4_34_create_product():
@@ -271,14 +272,14 @@ def test_r4_34_create_product():
         temp += test_string
     assert create_product('Spooky Bats',
                           "These wooden peg",
-                          32.71, '2022-10-15', 'test0@test.com') is False
+                          32.71, 'test8@test.com') is False
     assert create_product('Spooky Bats in a Tree', temp,
-                          32.71, '2022-10-15', 'test0@test.com') is False
+                          32.71, 'test8@test.com') is False
     assert create_product('Spooky Bats in a Tree perfect for promoting',
                           "These wooden peg people sets aru.",
-                          32.71, '2022-10-15', 'test0@test.com') is False
+                          32.71, 'test8@test.com') is False
     assert create_product('Spooky Bats in a Tree', test_string,
-                          32.71, '2022-10-15', 'test0@test.com') is True
+                          32.71, 'test8@test.com') is True
 
 
 def test_r4_5_create_product():
@@ -292,13 +293,13 @@ def test_r4_5_create_product():
 
     assert create_product('Live Edge Table Live edge Vanity Live Edge',
                           testStr,
-                          9.71, '2022-11-15', 'test0@test.com') is False
+                          9.71, 'test8@test.com') is False
     assert create_product('Live Edge Table Live edge Vanity Live Edge',
                           testStr,
-                          11111.71, '2022-11-15', 'test0@test.com') is False
+                          11111.71, 'test8@test.com') is False
     assert create_product('Live Edge Table Live edge Vanity Live Edge',
                           testStr,
-                          32.71, '2022-11-15', 'test0@test.com') is True
+                          32.71, 'test8@test.com') is True
 
 
 def test_r4_6_create_product():
@@ -312,11 +313,7 @@ def test_r4_6_create_product():
               "Dijon as part of the exclusive Etsy Creator Collab. "
 
     assert create_product('Honey Dijon Creator Collab', testStr,
-                          110.75, '2021-01-01', 'test0@test.com') is False
-    assert create_product('Honey Dijon Creator Collab', testStr,
-                          110.75, '2025-02-02', 'test0@test.com') is False
-    assert create_product('Honey Dijon Creator Collab', testStr,
-                          110.75, '2022-12-15', 'test0@test.com') is True
+                          110.75, 'test8@test.com') is True
 
 
 def test_r4_7_create_product():
@@ -333,11 +330,11 @@ def test_r4_7_create_product():
               "thread in a variety of color options. "
 
     assert create_product('PERSONALIZED leather hip flask', testStr,
-                          42.00, '2023-12-15', '') is False
+                          42.00, '') is False
     assert create_product('PERSONALIZED leather hip flask', testStr,
-                          42.00, '2023-12-15', 'abcdef.def@mail.com') is False
+                          42.00, 'abcdef.def@mail.com') is False
     assert create_product('PERSONALIZED leather hip flask', testStr,
-                          42.00, '2023-12-15', 'test0@test.com') is True
+                          42.00, 'test8@test.com') is True
 
 
 def test_r4_8_create_product():
@@ -352,32 +349,83 @@ def test_r4_8_create_product():
               "thread in a variety of color options. "
 
     assert create_product('PERSONALIZED leather hip flask', testStr,
-                          42.00, '2023-12-15', '') is False
+                          42.00, 'test8@test.com') is False
     assert create_product('Handprint Keychain and or Footprint', testStr,
-                          42.00, '2023-12-15', 'test0@test.com') is True
+                          42.00, 'test8@test.com') is True
 
 
-def test_r5_1_productUpdate():
+
+def test_r5_1_update_product():
     '''
-    Testing R3-1: update attributes of products
+    Testing R5-1: update attributes of products
       and update modified time automatically
     (will use the created product in the previous test.)
     '''
+    title_existed = "Wooden Toy and Montessori and Waldorf111"
+    description1 = """These wooden peg people sets are perfect for promoting 
+    open ended play, Your child will love exploring and using them in many 
+    different ways."""
+    create_product(Title=title_existed, Description=description1, Price=15,
+                   Owner_email='test8@test.com')
+    description2 = """These wooden peg people sets are perfect for promoting 
+    open ended play, brand new for children"""
+    assert update_product(old_title=title_existed, newDescription=description1,
+                          newPrice=20.0, newTitle="Wooden Toy Brand new"
+                          ) is True
 
-    assert updateProductTittle(ID=1, newTittle="product") is True
-    assert updateProductDescription(ID=1, newDescription="product") is True
-    assert updateProductPrice(ID=1, newPrice=13) is True
+    assert update_product(old_title="Wooden Toy Brand new", newDescription=description2,
+                          newPrice=25.0, newTitle="Wooden Toy Brand new1"
+                          ) is True
+
+    assert update_product(old_title="Wooden Toy Brand new1", newPrice=30.0,
+                          newTitle="Wooden Toy Brand new2") is True
 
 
-def test_r5_2_productUpdate():
+def test_r5_2_update_product():
     '''
-    Testing R3-2: ID, tittle, description cannot be empty
-    (will use the created product in the previous test.)
+    Testing R5-2: Price can be only increased but cannot be decreased
     '''
+    title_existed = "Wooden Toy Brand new2"
+    assert update_product(old_title=title_existed, newPrice=5.0,
+                          newTitle="Wooden Toy Brand new3") is False
+    assert update_product(old_title=title_existed, newPrice=35.0,
+                          newTitle="Wooden Toy Brand new3") is True
 
-    assert updateProductTittle(ID=None, newTittle="product") is False
-    assert updateProductDescription(ID=None, newDescription="") is False
-    assert updateProductPrice(ID=None, newPrice=13) is False
-    assert updateProductTittle(ID=1, newTittle="") is False
-    assert updateProductDescription(ID=1, newDescription="") is False
-    assert updateProductPrice(ID=1, newPrice=None) is False
+
+def test_r5_4_update_product():
+    '''
+    Testing R5-4: Price has to be of range [10,10000], title has to be
+    alphanumeric-only, and space allowed only if it is not as prefix and suffix.
+    The description of the product can be arbitrary characters, with a minimum
+    length of 20 characters and a maximum of 2000 characters. Description has
+    to be longer than the product's title.
+    '''
+    title_existed = "Wooden Toy Brand new3"
+    description1 = """The Austin vanity is proudly made in Canada. Every 
+    Austin vanity is handmade to order and has a lead time of approximately 
+    14 days. """
+    description2 =  """The Austin vanity is proudly made in Canada. Every 
+    Austin vanity is handmade to order and has a lead time of approximately 
+    14 days. The Austin vanity is proudly made in Canada. Every 
+    Austin vanity is handmade to order and has a lead time of approximately 
+    14 days. """
+    title1 = "Live edge Table"
+    assert update_product(old_title=title_existed, newDescription=description1,
+                          newTitle=title1, newPrice=45.0) is True
+    # price must less than 10000
+    assert update_product(old_title=title_existed, newDescription=description1,
+                          newTitle="Live edge Table1", newPrice=20000.0) is False
+    # no space at left or right
+    assert update_product(old_title=title_existed, newTitle=" Live edge Table1"
+                          ) is False
+    assert update_product(old_title=title_existed, newTitle="Live edge Table1 "
+                          ) is False
+    # only alphanumeric
+    assert update_product(old_title=title_existed, newTitle="Live!edge*Table1&"
+                          ) is False
+    # description shorter than title
+    assert update_product(old_title=title_existed, newTitle="live edge Table1",
+                          newDescription="abba") is False
+    # description shorter than 20
+    assert update_product(old_title=title_existed, newTitle="livea1",
+                          newDescription="aaaaabbbbbccccc") is False
