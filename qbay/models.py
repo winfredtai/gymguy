@@ -397,7 +397,7 @@ def create_product(Title, Description, Price, Owner_email):
     # R4-3: The description of the product can be arbitrary characters,
     # with a minimum length of 20 characters and a maximum of 2000 characters.
     # R4-4: Description has to be longer than the product's title.
-    if not check_description(Description,Title):
+    if not check_description(Description, Title):
         return False
 
     # R4-5: Price has to be of range [10, 10000].

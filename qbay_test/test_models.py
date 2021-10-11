@@ -116,7 +116,6 @@ def test_r2_1_login():
       u1 in database)
     '''
 
-
     user = login('test10@test.com', '123456aA.')
     assert user is not None
     assert user.username == 'user10'
@@ -204,6 +203,7 @@ def test_r3_4_update_user():
     assert update_user(email="test8@test.com", username=" ",
                        shipping_address="33 Evergreen Terrace",
                        postal_code="L55 2B88") is False
+
 
 def test_r4_12_create_product():
     """
@@ -394,16 +394,16 @@ def test_r5_2_update_product():
 def test_r5_4_update_product():
     '''
     Testing R5-4: Price has to be of range [10,10000], title has to be
-    alphanumeric-only, and space allowed only if it is not as prefix and suffix.
-    The description of the product can be arbitrary characters, with a minimum
-    length of 20 characters and a maximum of 2000 characters. Description has
-    to be longer than the product's title.
+    alphanumeric-only, and space allowed only if it is not as prefix
+    and suffix. The description of the product can be arbitrary characters,
+    with a minimum length of 20 characters and a maximum of 2000 characters.
+    Description has to be longer than the product's title.
     '''
     title_existed = "Wooden Toy Brand new3"
     description1 = """The Austin vanity is proudly made in Canada. Every 
     Austin vanity is handmade to order and has a lead time of approximately 
     14 days. """
-    description2 =  """The Austin vanity is proudly made in Canada. Every 
+    description2 = """The Austin vanity is proudly made in Canada. Every 
     Austin vanity is handmade to order and has a lead time of approximately 
     14 days. The Austin vanity is proudly made in Canada. Every 
     Austin vanity is handmade to order and has a lead time of approximately 
