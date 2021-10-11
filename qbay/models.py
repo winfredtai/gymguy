@@ -383,12 +383,14 @@ def updateProductTittle(ID, newTittle):
     if (newTittle is not None) & (ID is not None):
 
         # update product tittle to the current database session
-        db.session.query(Product).filter(Product.product_id == ID).\
-            update({Product.tittle: newTittle}, synchronize_session = False)
+        db.session.query(Product).filter(Product.product_id==ID).\
+            update({Product.tittle: newTittle}, \
+                synchronize_session = False)
         
         # update product update time to the current database session
-        db.session.query(Product).filter(Product.product_id == ID).\
-            update({Product.last_modified_date: datetime.now}, synchronize_session = False)
+        db.session.query(Product).filter(Product.product_id==ID).\
+            update({Product.last_modified_date: datetime.now}, \
+                synchronize_session = False)
         
         # save the product object
         db.session.commit()
@@ -409,11 +411,11 @@ def updateProductDescription(ID, newDescription):
     if (newDescription is not None) & (ID is not None):
 
         # update product description to the current database session
-        db.session.query(Product).filter(Product.product_id == ID).\
+        db.session.query(Product).filter(Product.product_id==ID).\
             update({Product.description: newDescription}, synchronize_session = False)
         
         # update product update time to the current database session
-        db.session.query(Product).filter(Product.product_id == ID).\
+        db.session.query(Product).filter(Product.product_id==ID).\
             update({Product.last_modified_date: datetime.now()}, synchronize_session = False)
         
         # save the product object
@@ -438,11 +440,11 @@ def updateProductPrice(ID, newPrice):
     if (newPrice > oldPrice) & (ID is not None):
 
         # update product description to the current database session
-        db.session.query(Product).filter(Product.product_id == ID).\
+        db.session.query(Product).filter(Product.product_id==ID).\
             update({Product.price: newPrice}, synchronize_session = False)
         
         # update product update time to the current database session
-        db.session.query(Product).filter(Product.product_id == ID).\
+        db.session.query(Product).filter(Product.product_id==ID).\
             update({Product.last_modified_date: datetime.now()}, synchronize_session = False)
         
         # save the product object

@@ -1,4 +1,5 @@
-from qbay.models import register, login, update_user, updateProductTittle, updateProductDescription, updateProductPrice
+from qbay.models import register, login, update_user, \
+    updateProductTittle, updateProductDescription, updateProductPrice
 from qbay_test.conftest import pytest_sessionstart
 
 pytest_sessionstart()
@@ -363,9 +364,9 @@ def test_r5_1_productUpdate():
     (will use the created product in the previous test.)
     '''
 
-    assert updateProductTittle(ID = 1, newTittle = "product") is True
-    assert updateProductDescription(ID = 1, newDescription = "product") is True
-    assert updateProductPrice(ID = 1, newPrice = 13) is True
+    assert updateProductTittle(ID=1, newTittle="product") is True
+    assert updateProductDescription(ID=1, newDescription="product") is True
+    assert updateProductPrice(ID=1, newPrice=13) is True
 
 
 def test_r5_2_productUpdate():
@@ -374,9 +375,9 @@ def test_r5_2_productUpdate():
     (will use the created product in the previous test.)
     '''
 
-    assert updateProductTittle(ID = None, newTittle = "product") is False
-    assert updateProductDescription(ID = None, newDescription = "") is False
-    assert updateProductPrice(ID = None, newPrice = 13) is False
-    assert updateProductTittle(ID = 1, newTittle = "") is False
-    assert updateProductDescription(ID = 1, newDescription = "") is False
-    assert updateProductPrice(ID = 1, newPrice = None) is False
+    assert updateProductTittle(ID=None, newTittle="product") is False
+    assert updateProductDescription(ID=None, newDescription="") is False
+    assert updateProductPrice(ID=None, newPrice=13) is False
+    assert updateProductTittle(ID=1, newTittle="") is False
+    assert updateProductDescription(ID=1, newDescription="") is False
+    assert updateProductPrice(ID=1, newPrice=None) is False
