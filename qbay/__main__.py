@@ -1,5 +1,5 @@
 from qbay import *
-from qbay.cli import login_page, regsiter_page, home_page
+from qbay.cli import login_page, register_page, home_page
 
 
 def main():
