@@ -8,7 +8,7 @@ def main():
             'Welcome. Your options are as follows\n'
             '1: User Login\n'
             '2: User Registration\n'
-            '3: Exit the system\n''
+            '3: Exit the system\n'
             'Please enter the number corresponding to what '
             'you would like to do.\n')
         selection = selection.strip()
