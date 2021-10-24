@@ -1,4 +1,6 @@
 from qbay import *
+from qbay.models import *
+from qbay.controllers import *
 from qbay.cli import login_page, regsiter_page
 
 
@@ -20,3 +22,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    app.run(debug=True, port=FLASK_PORT)

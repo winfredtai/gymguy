@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block header %}
+<h1>{% block title %}Update Product{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<h4>{{message}}</h4>
+<form method="post">
+  <div class="form-group">
+    <label for="old_title">Old Tittle (For finding specific product)</label>
+    <input class="form-control" name="old_title" id="old_title" required>
+    <label for="title">Tittle (Less than 80 words)</label>
+    <input class="form-control" name="title" id="title" required>
+    <label for="description">
+      Description(More than 20 words and longer than title)
+    </label>
+    <input class="form-control" name="description" id="description" required>
+    <label for="price">Price (More than 10)</label>
+    <input class="form-control" type="number" step="0.01" name="price" id="price" required>
+    <input class="btn btn-primary" type="submit" value="Update">
+  </div>
+</form>
+{% endblock %}
