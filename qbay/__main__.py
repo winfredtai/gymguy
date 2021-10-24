@@ -9,7 +9,8 @@ def main():
             '1: User Login\n'
             '2: User Registration\n'
             '3: Home Page\n'
-            'Please enter the number corresponding to what you would like to do.\n')
+            'Please enter the number corresponding to what '
+            'you would like to do.\n')
         selection = selection.strip()
         if selection == '1':
             user = login_page()
