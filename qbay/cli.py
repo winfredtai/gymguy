@@ -1,4 +1,4 @@
-from qbay.models import login, register
+from qbay.models import Product, login, register, update_product
 
 
 def login_page():
@@ -17,6 +17,30 @@ def register_page():
         print('registration succeeded')
     else:
         print('registration failed.')
+
+
+def update_product_page():
+    old_title = input('Please input product old title\
+                      for finding specific product:\n')
+    title = input('Please input new title:\n')
+    description = input('Please input product description:\n')
+    price = float(input('Please input new price'))
+    product = Product.query.fileter_by(title=old_title).first()
+    if product.product_id is None:
+        print('Cannot find product')
+    elif title is None:
+        print('New title cannot be empty')
+    elif description is None:
+        print('Product description cannot be empty.')
+    elif price < product.price:
+        print('Price can only be increased.')
+    elif update_product(old_title=old_title,
+                        newTitle=title,
+                        newDescription=description,
+                        newPrice=price):
+        print('Update product secceeded')
+    else:
+        print('Update product failed.')
 
 
 def home_page():
