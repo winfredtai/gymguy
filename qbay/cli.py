@@ -17,3 +17,19 @@ def regsiter_page():
         print('registration succceeded')
     else:
         print('regisration failed.')
+
+
+def home_page():
+    selection = input(
+        'Welcome to the home page. Your options are as follows:\n'
+        '1: Create Product Page\n'
+        '2: Update Product Page\n'
+        '3: Return to Main Screen\n'
+        'Please enter the number corresponding to what you would like to do.\n')
+    selection = selection.strip()
+    if selection == 1:
+        create_product_page()
+    elif selection == 2:
+        update_product_page()
+    elif selection == 3:
+        main()
