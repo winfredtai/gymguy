@@ -83,4 +83,3 @@ def home_page():
         update_product_page()
     elif selection == 3:
         main()
-
