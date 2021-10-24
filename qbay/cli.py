@@ -7,6 +7,30 @@ def login_page():
     return login(email, password)
 
 
+def login_success_page():
+    while True:
+        selection1 = input(
+            'Welcome. Your options are as follows\n'
+            '1. Update your profile\n'
+            '2. Go to the home page\n'
+            '3. Log out\n'
+            'Please enter the number corresponding to what '
+            'you would like to do.\n')
+        selection1 = selection1.strip()
+        if selection1 == '1':
+            NewP = profile_update_page()
+            if NewP:
+                print("profile update succeed")
+            else:
+                print('profile update failed')
+        elif selection1 == '2':
+            home_page()
+        elif selection1 == '3':
+            break
+        else:
+            print("Invalid Input")
+
+
 def regsiter_page():
     user_name = input('Please input user name:')
     email = input('Please input email:')
@@ -59,3 +83,4 @@ def home_page():
         update_product_page()
     elif selection == 3:
         main()
+
