@@ -18,7 +18,7 @@ def login_success_page():
             'you would like to do.\n')
         selection1 = selection1.strip()
         if selection1 == '1':
-            NewP = update_product_page()
+            NewP = profile_update_page()
             if NewP:
                 print("profile update succeed")
             else:
