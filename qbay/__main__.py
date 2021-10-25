@@ -1,4 +1,3 @@
-from qbay import *
 from qbay.cli import login_page, register_page, login_success_page
 
 
