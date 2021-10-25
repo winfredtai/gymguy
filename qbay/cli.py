@@ -98,16 +98,16 @@ def home_page():
             'Please enter the number corresponding to what you '
             'would like to do.\n')
         selection = selection.strip()
-        if selection == 1:
+        if selection == '1':
             product2 = update_product_page()
             if product2:
                 print('Update product succeeded.')
                 break
             else:
                 print('Update product failed.')
-        elif selection == 2:
+        elif selection == '2':
             create_product_page()
-        elif selection == 3:
+        elif selection == '3':
             break
         else:
             print('Invalid input, please try again.')
