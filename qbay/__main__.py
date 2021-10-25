@@ -20,7 +20,7 @@ def main():
             else:
                 print('login failed')
         elif selection == '2':
-            regsiter_page()
+            register_page()
         elif selection == '3':
             print("See you next time")
             exit(0)

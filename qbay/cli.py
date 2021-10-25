@@ -31,7 +31,7 @@ def login_success_page():
             print("Invalid Input")
 
 
-def regsiter_page():
+def register_page():
     user_name = input('Please input user name:')
     email = input('Please input email:')
     password = input('Please input password:')
@@ -39,9 +39,9 @@ def regsiter_page():
     if password != password_twice:
         print('password entered not the same')
     elif register(user_name, email, password):
-        print('registration succceeded')
+        print('registration succeeded')
     else:
-        print('regisration failed.')
+        print('registration failed.')
 
 
 def update_product_page():
@@ -63,23 +63,31 @@ def update_product_page():
                         newTitle=title,
                         newDescription=description,
                         newPrice=price):
-        print('Update product secceeded')
+        print('Update product succeeded')
     else:
         print('Update product failed.')
 
 
 def home_page():
-    selection = input(
-        'Welcome to the home page. Your options are as follows:\n'
-        '1: Create Product Page\n'
-        '2: Update Product Page\n'
-        '3: Return to Main Screen\n'
-        'Please enter the number corresponding to what you '
-        'would like to do.\n')
-    selection = selection.strip()
-    if selection == 1:
-        create_product_page()
-    elif selection == 2:
-        update_product_page()
-    elif selection == 3:
-        main()
+    while True:
+        selection = input(
+            'Welcome to the home page. Your options are as follows:\n'
+            '1: Update Product Page\n'
+            '2: Create Product Page\n'
+            '3: Return to Main Screen\n'
+            'Please enter the number corresponding to what you '
+            'would like to do.\n')
+        selection = selection.strip()
+        if selection == 1:
+            product2 = update_product_page()
+            if product2:
+                print('Update product succeeded.')
+                break
+            else:
+                print('Update product failed.')
+        elif selection == 2:
+            create_product_page()
+        elif selection == 3:
+            break
+        else:
+            print('Invalid input, please try again.')
