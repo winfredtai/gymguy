@@ -1,10 +1,19 @@
-from qbay.models import Product, login, register, update_product
+from qbay.models import Product, login, register, \
+    update_product, update_user, create_product
 
 
 def login_page():
     email = input('Please input email:')
     password = input('Please input password:')
     return login(email, password)
+
+
+def profile_update_page():
+    email = input('Please input email:')
+    username = input('Please input username:')
+    shipping_address = input('Please input shipping_address:')
+    postal_code = input('Please input postal_code:')
+    return update_user(email, username, shipping_address, postal_code)
 
 
 def login_success_page():
@@ -42,6 +51,17 @@ def register_page():
         print('registration succeeded')
     else:
         print('registration failed.')
+
+
+def create_product_page():
+    Title = input('Please input product title:')
+    Description = input('Please input product description:')
+    Price = float(input('Please input product price:'))
+    Owner_email = input('Please input product owner email:')
+    if create_product(Title, Description, Price, Owner_email):
+        print('Create product success')
+    else:
+        print('product create failed????.')
 
 
 def update_product_page():
