@@ -2,21 +2,46 @@ from qbay.models import Product, login, register, update_product
 
 
 def login_page():
-    email = input('Please input email')
+    email = input('Please input email:')
     password = input('Please input password:')
     return login(email, password)
 
 
-def register_page():
+def login_success_page():
+    while True:
+        selection1 = input(
+            'Welcome. Your options are as follows\n'
+            '1. Update your profile\n'
+            '2. Go to the home page\n'
+            '3. Log out\n'
+            'Please enter the number corresponding to what '
+            'you would like to do.\n')
+        selection1 = selection1.strip()
+        if selection1 == '1':
+            NewP = profile_update_page()
+            if NewP:
+                print("profile update succeed")
+            else:
+                print('profile update failed')
+        elif selection1 == '2':
+            home_page()
+        elif selection1 == '3':
+            break
+        else:
+            print("Invalid Input")
+
+
+def regsiter_page():
+    user_name = input('Please input user name:')
     email = input('Please input email:')
     password = input('Please input password:')
     password_twice = input('Please input the password again:')
     if password != password_twice:
         print('password entered not the same')
-    elif register('default name', email, password):
-        print('registration succeeded')
+    elif register(user_name, email, password):
+        print('registration succceeded')
     else:
-        print('registration failed.')
+        print('regisration failed.')
 
 
 def update_product_page():
