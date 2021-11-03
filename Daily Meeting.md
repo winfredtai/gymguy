@@ -37,19 +37,38 @@ My plan for the rest of the sprint involves extrapolating the work I have curren
 
 
 
+
+
 ### Team Member #2:
 
 **Name**:
 
+Winfred Tai 17zt12 20103850
+
+
 **Branch**:
+
+test_register
+
 
 **Progress**:
 
+R1-1 and R1-3-5 has been tested locally with one group of .in and .out file, not yet sufficient to apply the method of partitioning.
+
+
 **Difficulties**:
+
+The difficulty derives from the arrangement of multiple .in and .out files required to follow the Black Box testing methods, such as partitioning and exhaustive testing, this would result a complicated folder structure and test designs so that we could make sure (almost) all cases have been tested.
+
 
 **Plan**:
 
-#### Team Member #3:
+My plan would be to incorporate the current progress to the black box testing methods by adding more test files, as well as arranging folders to the appropriate structure, each folder refers to one requirement with sub-folders contains more sub-folders of partitioning files, I also plan to adjust the prompt message when user does not follow the input requirement, for a more user-friendly interface.
+
+
+
+
+### Team Member #3:
 
 **Name**:
 
@@ -62,7 +81,7 @@ My plan for the rest of the sprint involves extrapolating the work I have curren
 **Plan**:
 
 
-#### Team Member #4:
+### Team Member #4:
 
 **Name**:
 
