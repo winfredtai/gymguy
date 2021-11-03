@@ -11,9 +11,7 @@ Daily standup meeting, report of progress and difficulties
 **Name**:
 
 Jordan Belinsky
-
 18JMB16
-
 20164936
 
 
