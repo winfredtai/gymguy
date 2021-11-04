@@ -72,13 +72,27 @@ My plan would be to incorporate the current progress to the black box testing me
 
 **Name**:
 
+Sizhe Guan, 17sg46,20090459
+
+
 **Branch**:
+
+test_createproduct
+
 
 **Progress**:
 
+I have currently completed the two base cases for the login page requirements (R4-1 and R4-2). I am applying black box testing methods into these completed tests currently with input and output coverage testing.
+
+
 **Difficulties**:
 
+I had difficulties in designing the overall format for the CLI testing to make the in/out file been successfully runed in test_createproduct.py file. Also, For the three methods of black box testing, I only know how to do boundary testing for numeric attribute and the input output coverage testing is hard to implement since the attributes of a product are complicated. 
+
+
 **Plan**:
+
+There are 6 more attributes need to be tested and each of them have different boundaries so I am going to design the test case for the rest of requirements and try to combine some of them if their requirements are similar and can be tested together.
 
 
 ### Team Member #4:
