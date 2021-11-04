@@ -99,12 +99,27 @@ There are 6 more attributes need to be tested and each of them have different bo
 
 **Name**:
 
+Ziyuan Yu, 16zy18,20032445
+
+
 **Branch**:
+
+test_updateproduct
+
 
 **Progress**:
 
+I have already tested R5-1-2 locally of update product page. I am applying black box testing methods into these completed tests currently with input and output coverage testing.
+
+
 **Difficulties**:
 
+I had difficulties in designing the overall format for the CLI testing to make sure all cases can be tested from complex file structure formed by a large number of test files.
+
+
 **Plan**:
+
+My plan is to merge the current progress into the black box testing method by looking for the common parts of the test files, then deleting some of the test files, and arranging the folders in an appropriate structure, and incorporating the current progress into the black box testing method, each folder refers to a requirement. I also plan to adjust the prompt message when the user does not follow the input requirements and re-enter it to ensure that the current progress will not be lost due to input failure.
+
 
 
