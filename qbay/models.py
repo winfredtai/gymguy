@@ -214,7 +214,6 @@ def check_title(title):
     # R4-1:The title of the product has to be alphanumeric-only,
     # and space allowed only if it is not as prefix and suffix.
     validT = Product.query.filter_by(title=title).all()
-    print(len(validT))
     if len(validT) > 0:
         return False
     elif title[0] == ' ' or title[-1] == ' ':

@@ -7,25 +7,17 @@ current_folder = Path(__file__).parent
 
 
 # read expected in/out
-r5_1_expected_in = open(current_folder.joinpath(
- 'test_R5-1.in'))
-r5_1_expected_out = open(current_folder.joinpath(
- 'test_R5-1.out')).read()
+r5_1_expected_in = open(current_folder.joinpath('test_R5-1.in'))
+r5_1_expected_out = open(current_folder.joinpath('test_R5-1.out')).read()
 
-r5_2_expected_in = open(current_folder.joinpath(
- 'test_R5-2.in'))
-r5_2_expected_out = open(current_folder.joinpath(
- 'test_R5-2.out')).read()
+r5_2_expected_in = open(current_folder.joinpath('test_R5-2.in'))
+r5_2_expected_out = open(current_folder.joinpath('test_R5-2.out')).read()
 
-r5_3_expected_in = open(current_folder.joinpath(
- 'test_R5-3.in'))
-r5_3_expected_out = open(current_folder.joinpath(
- 'test_R5-3.out')).read()
+r5_3_expected_in = open(current_folder.joinpath('test_R5-3.in'))
+r5_3_expected_out = open(current_folder.joinpath('test_R5-3.out')).read()
 
-r5_4_expected_in = open(current_folder.joinpath(
- 'test_R5-4.in'))
-r5_4_expected_out = open(current_folder.joinpath(
- 'test_R5-4.out')).read()
+r5_4_expected_in = open(current_folder.joinpath('test_R5-4.in'))
+r5_4_expected_out = open(current_folder.joinpath('test_R5-4.out')).read()
 
 
 def test_r5_1():
