@@ -430,8 +430,9 @@ def update_product(old_title, newDescription=None, newPrice=None,
     if product is None:
         return False
     if newTitle is not None:
-        if not check_title(newTitle):
-            return False
+        if newTitle != old_title:
+            if not check_title(newTitle):
+                return False
     if newDescription is not None:
         if not check_description(newDescription, newTitle):
             return False
@@ -440,6 +441,7 @@ def update_product(old_title, newDescription=None, newPrice=None,
             return False
         if product.price > newPrice:
             return False
+    old_modified_date = product.last_modified_date
     date = datetime.datetime.now()
     if not check_date(date):
         return False
@@ -451,4 +453,6 @@ def update_product(old_title, newDescription=None, newPrice=None,
         product.price = newPrice
     product.last_modified_date = date
     db.session.commit()
+    if product.last_modified_date is not old_modified_date:
+        print("last modified changed")
     return True
