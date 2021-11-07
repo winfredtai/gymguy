@@ -68,7 +68,7 @@ def update_product_page():
     old_title = input('Please input product old title:\n')
     newTitle = input('Please input new title:\n')
     newDescription = input('Please input product description:\n')
-    newPrice = float(input('Please input new price'))
+    newPrice = float(input('Please input new price:\n'))
     return update_product(old_title, newDescription, newPrice, newTitle)
 
 
