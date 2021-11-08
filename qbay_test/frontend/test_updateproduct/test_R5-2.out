@@ -1,0 +1,26 @@
+Welcome. Your options are as follows
+1: User Login
+2: User Registration
+3: Exit the system
+Please enter the number corresponding to what you would like to do.
+Please input email:Please input password:welcome abc
+Welcome. Your options are as follows
+1. Update your profile
+2. Go to the home page
+3. Log out
+Please enter the number corresponding to what you would like to do.
+Welcome to the home page. Your options are as follows:
+1: Update Product Page
+2: Create Product Page
+3: Return to Main Screen
+Please enter the number corresponding to what you would like to do.
+Please input product old title:
+Please input new title:
+Please input product description:
+Please input new price:
+Update product failed.
+Welcome to the home page. Your options are as follows:
+1: Update Product Page
+2: Create Product Page
+3: Return to Main Screen
+Please enter the number corresponding to what you would like to do.
