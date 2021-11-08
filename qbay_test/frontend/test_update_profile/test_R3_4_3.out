@@ -1,0 +1,18 @@
+Welcome. Your options are as follows
+1: User Login
+2: User Registration
+3: Exit the system
+Please enter the number corresponding to what you would like to do.
+Please input email:Please input password:welcome user10
+Welcome. Your options are as follows
+1. Update your profile
+2. Go to the home page
+3. Log out
+Please enter the number corresponding to what you would like to do.
+Please input email:Please input username:Please input shipping_address:Please input postal_code:Username must be between 2 and 20 characters.
+profile update failed
+Welcome. Your options are as follows
+1. Update your profile
+2. Go to the home page
+3. Log out
+Please enter the number corresponding to what you would like to do.
