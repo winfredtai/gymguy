@@ -214,7 +214,6 @@ def check_title(title):
     # R4-1:The title of the product has to be alphanumeric-only,
     # and space allowed only if it is not as prefix and suffix.
     validT = Product.query.filter_by(title=title).all()
-    print(len(validT))
     if len(validT) > 0:
         return False
     elif title[0] == ' ' or title[-1] == ' ':
@@ -239,14 +238,13 @@ def check_description(description, title):
         True if product description meets requirements otherwise False
     '''
     # R4-4: Description has to be longer than the product's title.
-    if len(description) < len(title):
+    if len(description) <= len(title):
         return False
-    else:
-        # R4-3: The description of the product can be arbitrary characters,
-        # with a minimum length of 20 characters and a maximum of
-        # 2000 characters.
-        if len(description) > 2000 or len(description) < 20:
-            return False
+    # R4-3: The description of the product can be arbitrary characters,
+    # with a minimum length of 20 characters and a maximum of
+    # 2000 characters.
+    elif len(description) > 2000 or len(description) < 20:
+        return False
     return True
 
 
