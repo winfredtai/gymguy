@@ -247,6 +247,7 @@ def check_description(description, title):
         return False
     return True
 
+
 def check_price(price):
     '''
     Checks that product price meets requirements
