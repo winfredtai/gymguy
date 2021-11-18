@@ -114,16 +114,16 @@ docker_interface
 
 **Progress**:
 
-
+I have currently began designing the general structure for web interface docker for user friendly and matching test cases of this project.
 
 
 **Difficulties**:
 
-
+Integrating all structures in the same docker is the difficulty I currently face because there are so many different situations that need to be considered, and some parts oof code designed by other teamates I need to understand.
 
 
 **Plan**:
 
-
+I am going to try to modify and optimize a part of the previous design to match all the situtations I can think of.
 
 
