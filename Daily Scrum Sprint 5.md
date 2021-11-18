@@ -55,17 +55,19 @@ docker_deploy
 
 **Progress**:
 
-
+Registered the first public dockerhub repository and built the image of Git repo.
+Finished the deployment of version 1.0.0 container and pushed to the dockerhub public repository, the web application seemed to work properly as expected.
 
 
 **Difficulties**:
 
-
+Still unable to comprehensive the additonal files such as Dockerfile, docker-compose.yml, wait-for-it.sh, as well as the modification to the qbay module init.py file,
+looks like the sql name is changed. What I did was simply follow the "file_changed" of the branch cli_deploy and did the modification as the provided files.
 
 
 **Plan**:
 
-
+In the future I would like to search for online tutorial as what I've done before for git, trying to learn the basic concepts of a docker container, and try to configure the docker file on my own for better adaption to our application deployment.
 
 
 
