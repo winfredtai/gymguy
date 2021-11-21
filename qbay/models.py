@@ -256,6 +256,9 @@ def check_price(price):
       Returns:
         True if product price meets requirements otherwise False
     '''
+    if type(price) != int and type(price) != float:
+        print("invalid price")
+        return False
     # R4-5: Price has to be of range [10, 10000].
     if price > 10000 or price < 10:
         return False
