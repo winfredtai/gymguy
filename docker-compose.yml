@@ -1,7 +1,7 @@
 version: "2"
 services:
   qbay-cli:
-    image: your_docker_hub_name/your_docker_hub_repo_name:version_info
+    image: winfredtai/qbay:v2
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     depends_on:
@@ -13,7 +13,7 @@ services:
     # command:  ["./wait-for-it.sh", "qbay-db:3306", "--strict" , "--timeout=300", "--", "python", "-m", "qbay"]
     networks:
       - qbay-site
-  
+
   qbay-db:
     image: mysql:5.7
     environment:
@@ -24,10 +24,10 @@ services:
       - ./db_init.sql:/data/application/init.sql
     networks:
       - qbay-site
-    
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    depends_on: 
+    depends_on:
       - qbay-db
     environment:
       PMA_HOST: qbay-db

@@ -132,3 +132,4 @@ mysql_data
 
 #notepad backup files
 *.bak
+.DS_Store
