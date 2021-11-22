@@ -131,4 +131,4 @@ db.sqlite
 mysql_data
 
 #notepad backup files
-.bak
+*.bak
