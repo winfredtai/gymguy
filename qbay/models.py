@@ -52,6 +52,11 @@ class Product(db.Model):
         db.DateTime, nullable=False)
     owner_email = db.Column(
         db.String(120), nullable=False)
+    buyer_email = db.Column(
+        db.String(120), nullable=True)
+    is_sold = db.Column(
+        db.Boolean(), nullable=False,
+        default=False)
 
     def __repr__(self):
         return '<Product %r>' % self.title
@@ -456,4 +461,16 @@ def update_product(old_title, newDescription=None, newPrice=None,
     db.session.commit()
     if product.last_modified_date is not old_modified_date:
         print("last modified changed")
+    return True
+
+
+def purchase_product(user, product):
+    if product.owner_email == user.email:
+        return False
+    if product.price > user.balance:
+        return False
+    product.buyer_email = user.email
+    product.is_sold = True
+    user.balance -= product.price
+    db.session.commit()
     return True
