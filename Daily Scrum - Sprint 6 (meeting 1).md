@@ -76,22 +76,23 @@ Sizhe Guan, 17sg46, 20090459
 
 **Branch**:
 
-
+backend_security_test
 
 
 **Progress**:
 
-
+ I am just having ideas about how to test the newly added features. The job of testing is built on the foundation of backend feature deployment and our backend developer has just finished the function design. 
 
 **Difficulties**:
 
+The placing order functionality is associated with both user and product database. The testing samples should follow the construction restrictions of two object models. Also there are many attributes related, I need to create lots of test cases to run through all possibilities.
 
 
 
 
 **Plan**:
 
-
+Planning to add true and false sample cases for each attribute of placing orders feature. The security testing is similar as the one we did before. It should pass since our implementation doesn’t conclude and SQL code part.
 
 
 ### Team Member #4:
