@@ -104,22 +104,22 @@ Ziyuan Yu, 16zy18, 20032445
 
 **Branch**:
 
-
+Frontend integration testing
 
 
 **Progress**:
 
-
+I am just having ideas about how to test the newly added functions of purchasing products. The job of testing is built on the foundation of fronted feature deployment and our frontend developer has just finished the function design. 
 
 
 **Difficulties**:
 
-
+The cli interface need to show all available products for users expect sold products, and sold products can be shown to the owner of these products. I need to consider all situation of the interface and test them.
 
 
 **Plan**:
 
-
+Planning to check the log for each products and check the products whether it is sold. Then check the user page which can show all of products which created by the owner with both sold and available.
 
 
 
