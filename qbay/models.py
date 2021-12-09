@@ -382,7 +382,7 @@ def update_user(email, username, shipping_address, postal_code):
         return False
 
 
-def create_product(Title, Description, Price, Owner_email):
+def create_product(Title, Description, Price, Owner_email, Buyer_email="", isSold=False):
     """
     Create a new product
         Parameters:
@@ -419,10 +419,15 @@ def create_product(Title, Description, Price, Owner_email):
     if len(validO) == 0:
         return False
 
+    if Owner_email == Buyer_email:
+        return False
+
     # create a new user
     product = Product(title=Title, description=Description,
                       last_modified_date=dayTime,
-                      price=Price, owner_email=Owner_email)
+                      price=Price, owner_email=Owner_email,
+                      buyer_email=Buyer_email,
+                      is_sold=isSold)
     # add it to the current database session
     db.session.add(product)
     # actually save the user object
