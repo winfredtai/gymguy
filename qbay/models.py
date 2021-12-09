@@ -382,7 +382,8 @@ def update_user(email, username, shipping_address, postal_code):
         return False
 
 
-def create_product(Title, Description, Price, Owner_email, Buyer_email="", isSold=False):
+def create_product(Title, Description, Price, Owner_email,
+                   Buyer_email="", isSold=False):
     """
     Create a new product
         Parameters:
