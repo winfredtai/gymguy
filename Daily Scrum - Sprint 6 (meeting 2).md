@@ -1,4 +1,4 @@
-# 🔥 Scrum Board Sprint 6 🔥
+# 🔥 Scrum Board Sprint 6 #2 🔥
 meeting time: 2021.12.08
 
 Daily standup meeting, report of progress and difficulties
