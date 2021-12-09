@@ -46,16 +46,17 @@ Winfred Tai, 17zt12, 20103850
 Sizhe Guan, 17sg46, 20090459
 
 **Branch**:
-
+bacend_security_test
 
 **Progress**:
-
+I have designed a few test cases for checking the buyer's email and owner's email, checking balance before placing orders and 
+checking if the product is sold out
 
 **Difficulties**:
-
+The backend deployment should be able to set the is_sold attribute default to false and the user who creates this product should be able to change its state into true when the product is actually sold out. 
 
 **Plan**:
-
+Gonna design other test cases for product sold out situation once the backend modify the create product and update production functions.
 
 
 ### Team Member #4:
