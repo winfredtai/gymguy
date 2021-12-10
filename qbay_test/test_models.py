@@ -429,35 +429,3 @@ def test_r5_4_update_product():
     # description shorter than 20
     assert update_product(old_title=title_existed, newTitle="livea1",
                           newDescription="aaaaabbbbbccccc") is False
-
-
-def test_r6_1_place_order():
-    '''
-        Testing R6-1: A user cannot place an order for his/her products.
-    '''
-    assert purchase_product('test8@test.com',
-                            "PERSONALIZED leather hip flask") is False
-    assert purchase_product('test10@test.com',
-                            "PERSONALIZED leather hip flask") is True
-
-
-def test_r6_2_place_order():
-    '''
-        Testing R6-2: A user cannot place an order that
-        costs more than his/her balance.
-    '''
-    title_existed = "Wooden Toy and Montessori and Waldofortestr6"
-    title_existed2 = "Wooden Toy and Montessori and Waldofortestr62"
-    description = """These wooden peg people sets are perfect for promoting 
-        open ended play, Your child will love exploring and using them in many 
-        different ways."""
-    create_product(Title=title_existed, Description=description, Price=99.99,
-                   Owner_email='test10@test.com')
-    create_product(Title=title_existed2, Description=description, Price=100.01,
-                   Owner_email='test10@test.com')
-    assert purchase_product('test8@test.com',
-                            "Wooden Toy and Montessori and Waldofortestr6") \
-           is True
-    assert purchase_product('test4@test.com',
-                            "Wooden Toy and Montessori and Waldofortestr62") \
-           is False
