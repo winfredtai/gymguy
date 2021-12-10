@@ -474,3 +474,24 @@ def purchase_product(user, product):
     user.balance -= product.price
     db.session.commit()
     return True
+
+
+def purchase_product(user_email, product_title):
+    product = Product.query.filter_by(title=product_title).first()
+    user = User.query.filter_by(email=user_email).first()
+    if product is None:
+        return False
+    if user is None:
+        return False
+    if product.owner_email == user.email:
+        print("cannot purchase your own item")
+        return False
+    if product.price > user.balance:
+        print("insufficient balance")
+        return False
+    product.buyer_email = user.email
+    product.is_sold = True
+    print("Successfully placed the order")
+    user.balance -= product.price
+    db.session.commit()
+    return True
