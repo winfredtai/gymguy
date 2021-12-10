@@ -464,7 +464,16 @@ def update_product(old_title, newDescription=None, newPrice=None,
     return True
 
 
-def purchase_product(user, product):
+def purchase_product(user_email, product_title):
+    product = Product.query.filter_by(title=product_title).first()
+    user = User.query.filter_by(email=user_email).first()
+    if product is None:
+        return False
+    if user is None:
+        return False
+    if product.is_sold:
+        print("item sold out")
+        return False
     if product.owner_email == user.email:
         return False
     if product.price > user.balance:
