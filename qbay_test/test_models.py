@@ -1,5 +1,5 @@
 from qbay.models import register, login, update_user, \
-    update_product, create_product, User, Product
+    update_product, create_product, purchase_product
 
 
 def test_r1_1_user_register():
