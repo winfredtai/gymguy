@@ -28,18 +28,16 @@ No direct plan is applicable at this point, aside from being available for quest
 Winfred Tai, 17zt12, 20103850
 
 **Branch**:
-
+frontend_dev_deploy
 
 **Progress**:
-
+finished the implementation of new menu, but meanwhile need to modify the backend models and add more helper functions in models.py file which is not supposed to be done by frontend devs.
 
 **Difficulties**:
-
+almost all the .in and .out files need to be re-written as menu has changed a little bit, and output has the relatively obvious change, huge amount of work needs to be done to fix the frontend test. 
 
 **Plan**:
-
-
-
+I would share work with Arthur otherwise there would be too much testing cases to implement.
 ### Team Member #3:
 
 **Name**:
