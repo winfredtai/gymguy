@@ -512,5 +512,5 @@ def list_products(email):
         print(
             f"{key}. Title: {available_product[key].title}, Price： "
             f"{available_product[key].price}, Sold_out: "
-            f"{sold_info}, owner: {available_product[key].owner_email}")
+            f"{sold_info}")
     return True
