@@ -500,11 +500,11 @@ def list_products(email):
     available_product = {}
     for i in products:
         the_product = Product.query.filter_by(title=i[0]).first()
-        if (the_product.is_sold == True) and \
+        if the_product.is_sold and \
                 (the_product.owner_email == user_email):
             counter += 1
             available_product[counter] = the_product
-        elif the_product.is_sold == False:
+        elif not the_product.is_sold:
             counter += 1
             available_product[counter] = the_product
     for key in available_product:
