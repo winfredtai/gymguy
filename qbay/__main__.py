@@ -15,7 +15,7 @@ def main():
             user = login_page()
             if user:
                 print(f'welcome {user.username}')
-                login_success_page()
+                login_success_page(user.email)
             else:
                 print('login failed')
         elif selection == '2':

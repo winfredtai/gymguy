@@ -470,18 +470,6 @@ def update_product(old_title, newDescription=None, newPrice=None,
     return True
 
 
-def purchase_product(user, product):
-    if product.owner_email == user.email:
-        return False
-    if product.price > user.balance:
-        return False
-    product.buyer_email = user.email
-    product.is_sold = True
-    user.balance -= product.price
-    db.session.commit()
-    return True
-
-
 def purchase_product(user_email, product_title):
     product = Product.query.filter_by(title=product_title).first()
     user = User.query.filter_by(email=user_email).first()
@@ -500,4 +488,29 @@ def purchase_product(user_email, product_title):
     print("Successfully placed the order")
     user.balance -= product.price
     db.session.commit()
+    return True
+
+
+def list_products(email):
+    user_email = email
+    products = Product.query.with_entities(Product.title,
+                                           Product.description, Product.price,
+                                           Product.is_sold).all()
+    counter = 0
+    available_product = {}
+    for i in products:
+        the_product = Product.query.filter_by(title=i[0]).first()
+        if (the_product.is_sold == True) and \
+                (the_product.owner_email == user_email):
+            counter += 1
+            available_product[counter] = the_product
+        elif the_product.is_sold == False:
+            counter += 1
+            available_product[counter] = the_product
+    for key in available_product:
+        sold_info = 'Yes' if available_product[key].is_sold else 'No'
+        print(
+            f"{key}. Title: {available_product[key].title}, Price： "
+            f"{available_product[key].price}, Sold_out: "
+            f"{sold_info}, owner: {available_product[key].owner_email}")
     return True
