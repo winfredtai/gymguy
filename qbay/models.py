@@ -510,7 +510,7 @@ def list_products(email):
     for key in available_product:
         sold_info = 'Yes' if available_product[key].is_sold else 'No'
         print(
-            f"{key}. Title: {available_product[key].title}, Price： "
+            f"{key}. Title: {available_product[key].title}, Price: "
             f"{available_product[key].price}, Sold_out: "
             f"{sold_info}")
     return True
