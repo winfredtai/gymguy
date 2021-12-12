@@ -1,5 +1,6 @@
 from qbay.models import Product, login, register, \
-    update_product, update_user, create_product
+    update_product, update_user, create_product, \
+    list_products, purchase_product
 
 
 def login_page():
@@ -16,7 +17,7 @@ def profile_update_page():
     return update_user(email, username, shipping_address, postal_code)
 
 
-def login_success_page():
+def login_success_page(email):
     while True:
         selection1 = input(
             'Welcome. Your options are as follows\n'
@@ -33,11 +34,18 @@ def login_success_page():
             else:
                 print('profile update failed')
         elif selection1 == '2':
-            home_page()
+            home_page(email)
         elif selection1 == '3':
             break
         else:
             print("Invalid Input")
+
+
+def place_order(email):
+    print("Product List:")
+    list_products(email)
+    product_name = input("Input the title of your desire product: ")
+    purchase_product(email, product_name)
 
 
 def register_page():
@@ -72,13 +80,14 @@ def update_product_page():
     return update_product(old_title, newDescription, newPrice, newTitle)
 
 
-def home_page():
+def home_page(email):
     while True:
         selection = input(
             'Welcome to the home page. Your options are as follows:\n'
             '1: Update Product Page\n'
             '2: Create Product Page\n'
-            '3: Return to Main Screen\n'
+            '3: Place an order\n'
+            '4: Return to Main Screen\n'
             'Please enter the number corresponding to what you '
             'would like to do.\n')
         selection = selection.strip()
@@ -92,6 +101,8 @@ def home_page():
         elif selection == '2':
             create_product_page()
         elif selection == '3':
+            place_order(email)
+        elif selection == '4':
             break
         else:
             print('Invalid input, please try again.')
