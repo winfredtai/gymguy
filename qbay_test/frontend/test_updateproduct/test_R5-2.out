@@ -12,7 +12,8 @@ Please enter the number corresponding to what you would like to do.
 Welcome to the home page. Your options are as follows:
 1: Update Product Page
 2: Create Product Page
-3: Return to Main Screen
+3: Place an order
+4: Return to Main Screen
 Please enter the number corresponding to what you would like to do.
 Please input product old title:
 Please input new title:
@@ -22,5 +23,6 @@ Update product failed.
 Welcome to the home page. Your options are as follows:
 1: Update Product Page
 2: Create Product Page
-3: Return to Main Screen
+3: Place an order
+4: Return to Main Screen
 Please enter the number corresponding to what you would like to do.

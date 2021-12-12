@@ -42,7 +42,7 @@ def test_r2_1_1():
         ['python', '-m', 'qbay'],
         stdin=r2_1_1_expected_in,
         capture_output=True,
-    ).stdout.decode()
+    ).stdout.replace(b'\r\n', b'\n').decode()
 
     print('outputs', output)
     assert output.strip() == r2_1_1_expected_out.strip()
@@ -63,7 +63,7 @@ def test_r2_1_2():
         ['python', '-m', 'qbay'],
         stdin=r2_1_2_expected_in,
         capture_output=True,
-    ).stdout.decode()
+    ).stdout.replace(b'\r\n', b'\n').decode()
 
     print('outputs', output)
     assert output.strip() == r2_1_2_expected_out.strip()
@@ -84,7 +84,7 @@ def test_r2_1_3():
         ['python', '-m', 'qbay'],
         stdin=r2_1_3_expected_in,
         capture_output=True,
-    ).stdout.decode()
+    ).stdout.replace(b'\r\n', b'\n').decode()
 
     print('outputs', output)
     assert output.strip() == r2_1_3_expected_out.strip()
@@ -105,7 +105,6 @@ def test_r2_1_4():
         ['python', '-m', 'qbay'],
         stdin=r2_1_4_expected_in,
         capture_output=True,
-    ).stdout.decode()
-
+    ).stdout.replace(b'\r\n', b'\n').decode()
     print('outputs', output)
     assert output.strip() == r2_1_4_expected_out.strip()

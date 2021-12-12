@@ -12,11 +12,9 @@ expected_in = open(current_folder.joinpath(
 expected_out = open(current_folder.joinpath(
     'test_register_r7.out')).read()
 
-print(expected_out)
 
-
-def test_login():
-    """capsys -- object created by pytest to 
+def test_register_r7():
+    """capsys -- object created by pytest to
     capture stdout and stderr"""
 
     # pip the input
@@ -24,7 +22,7 @@ def test_login():
         ['python', '-m', 'qbay'],
         stdin=expected_in,
         capture_output=True,
-    ).stdout.decode()
+    ).stdout.replace(b'\r\n', b'\n').decode()
 
     print('outputs', output)
     assert output.strip() == expected_out.strip()

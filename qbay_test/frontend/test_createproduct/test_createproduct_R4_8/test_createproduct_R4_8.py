@@ -11,10 +11,8 @@ expected_in = open(current_folder.joinpath(
 expected_out = open(current_folder.joinpath(
     'test_createproduct_R4_8.out')).read()
 
-print(expected_out)
 
-
-def test_register():
+def test_createproduct_R4_8_1():
     """capsys -- object created by pytest to
     capture stdout and stderr"""
 
@@ -23,5 +21,5 @@ def test_register():
         ['python', '-m', 'qbay'],
         stdin=expected_in,
         capture_output=True,
-    ).stdout.decode()
+    ).stdout.replace(b'\r\n', b'\n').decode()
     assert output.strip() == expected_out.strip()
