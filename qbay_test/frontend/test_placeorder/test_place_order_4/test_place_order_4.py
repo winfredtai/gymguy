@@ -17,6 +17,9 @@ print(expected_out)
 
 def test_place_order_4():
     """
+    test_place_order_4 is for testing a sold product will not be shown 
+    on the other user's user interface.
+
     capsys -- object created by pytest to
     capture stdout and stderr
     """
