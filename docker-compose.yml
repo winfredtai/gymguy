@@ -1,7 +1,7 @@
 version: "2"
 services:
   qbay-cli:
-    image: winfredtai/qbay:v3
+    image: winfredtai/qbay:v4
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     depends_on:
