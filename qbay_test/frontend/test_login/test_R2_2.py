@@ -33,7 +33,7 @@ def test_r2_2_1():
         ['python', '-m', 'qbay'],
         stdin=r2_2_1_expected_in,
         capture_output=True,
-    ).stdout.decode()
+    ).stdout.replace(b'\r\n', b'\n').decode()
 
     print('outputs', output)
     assert output.strip() == r2_2_1_expected_out.strip()
@@ -56,7 +56,7 @@ def test_r2_2_2():
         ['python', '-m', 'qbay'],
         stdin=r2_2_2_expected_in,
         capture_output=True,
-    ).stdout.decode()
+    ).stdout.replace(b'\r\n', b'\n').decode()
 
     print('outputs', output)
     assert output.strip() == r2_2_2_expected_out.strip()
